@@ -1,0 +1,12 @@
+*.log
+node_modules
+node_modules/*
+.vscode/
+.vscode/*
+var/
+log
+log/*
+.idea/
+.idea/*
+
+package-lock.json
