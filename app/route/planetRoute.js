@@ -4,9 +4,9 @@ module.exports = app =>{
 
     app.route("/v1/planet")
         .post(controller.register.bind(controller))
-        .get(controller.findAll.bind(controller))
-            
-    // app.route("/v1/planet/:id")
-    //     .get(controller.findId.bind(controller));
+        .get(controller.listPlanets.bind(controller))
+
+    app.route("/v1/planet/name/:name")
+        .get(controller.findName.bind(controller));
 
 }

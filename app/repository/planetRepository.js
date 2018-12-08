@@ -27,8 +27,16 @@ class PlanetRepository{
          })
     }
 
-    findAllPlanets() {
+    listAllPlanets() {
         return this._planetModel.find({});
+    }
+
+    findPlanetName(name){ 
+        return new Promise((resolve, reject) =>{
+            this._planetModel.find({name})
+                .then(planets => resolve(planets.map(planet => Object.assign({}, planet._doc))))
+                .catch(error => reject(error))
+        })
     }
 }
 

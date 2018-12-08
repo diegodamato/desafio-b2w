@@ -11,19 +11,28 @@ class PlanetController {
         const planet =  req.body;
         planet.id = uuidv1();
         
-        this._swapiService
-            .getMovieAppearances(planet)
-                .then(participations => this._planetRepository.registerPlanet(planet, participations))
-                .then(() => {
-                    console.log('[CONTROLLER] - Planeta salvo com sucesso')
-                    res.status(201).json({'message': 'Planeta salvo com sucesso'});
-                })
-                .catch(error => console.log("Erro " + error));
+        console.log(`[CONTROLLER] - Iniciando registro do planeta ${planet.name}`)
+        
+        this._swapiService.getMovieAppearances(planet)
+            .then(participations => this._planetRepository.registerPlanet(planet, participations))
+            .then(() => res.status(201).json({'message': 'Planeta salvo com sucesso'}))
+            .catch(error => console.log("Erro " + error));
     }
 
-    findAll(req, res){
-        this._planetRepository.findAllPlanets()
-            .then(planets => res.status(200).json(planets))
+    listPlanets(req, res){
+        console.log('[CONTROLLER] - Listagem de todos os planetas')
+
+        this._planetRepository.listAllPlanets()
+            .then(planets => planets.length ? res.status(200).json(planets) : res.status(204).json({}))
+            .catch(error => console.log(error));
+    }
+
+    findName(req, res){
+        const { name } = req.params;
+        console.log(`[CONTROLLER] - Busca pelo planeta ${name}`)
+        
+        this._planetRepository.findPlanetName(name)
+            .then(planets => planets.length ? res.status(200).json(planets) : res.status(204).json({}))
             .catch(error => console.log(error));
     }
 }
