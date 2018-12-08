@@ -9,9 +9,11 @@ app.use(bodyParser.urlencoded({extended:true}));
 consign({cwd:'app'})
     .include('database')
     .then('model')
+    .then('service')
     .then('repository')
-    .then('middleware')
+    //.then('middleware')
     .then('controller')
+    .then('beans')
     .then('route')
     .into(app);
 

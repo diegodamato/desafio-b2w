@@ -10,8 +10,12 @@
   "author": "Diego Oliveira Damato",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.18.0",
     "body-parser": "^1.18.3",
     "consign": "^0.1.6",
-    "express": "^4.16.4"
+    "express": "^4.16.4",
+    "lodash": "^4.17.11",
+    "mongoose": "^5.3.15",
+    "uuid": "^3.3.2"
   }
 }
