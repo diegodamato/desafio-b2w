@@ -35,6 +35,15 @@ class PlanetController {
             .then(planets => planets.length ? res.status(200).json(planets) : res.status(204).json({}))
             .catch(error => console.log(error));
     }
+
+    findId(req, res) {
+        const { id } = req.params;
+        console.log(`[CONTROLLER] - Busca planeta pelo id ${id}`)
+
+        this._planetRepository.findIdPlanet(id)
+            .then(planet => planet ? res.status(200).json(planet) : res.status(204).json({}))
+    }
+
 }
 
 module.exports = () => PlanetController;

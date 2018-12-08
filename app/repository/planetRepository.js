@@ -3,6 +3,7 @@ let mongoose = require('mongoose');
 class PlanetRepository{
     constructor(){
         this._planetModel = mongoose.model('planet')
+        this._excludedFields = { _id: false, __v: false }
     }
 
     registerPlanet(planet, participations) {
@@ -28,15 +29,19 @@ class PlanetRepository{
     }
 
     listAllPlanets() {
-        return this._planetModel.find({});
+        return this._planetModel.find({}, this._excludedFields);
     }
 
-    findPlanetName(name){ 
+    findPlanetName(name) { 
         return new Promise((resolve, reject) =>{
-            this._planetModel.find({name})
+            this._planetModel.find({name}, this._excludedFields)
                 .then(planets => resolve(planets.map(planet => Object.assign({}, planet._doc))))
-                .catch(error => reject(error))
+                .catch(error => reject(error));
         })
+    }
+
+    findIdPlanet(id) {
+        return this._planetModel.findOne({id}, this._excludedFields);
     }
 }
 
