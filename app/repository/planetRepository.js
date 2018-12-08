@@ -16,7 +16,7 @@ class PlanetRepository{
             planetModel.terrain = planet.terrain;
             planetModel.participations = participations;
 
-            planetModel.save((erro, result) => {
+            planetModel.save((erro) => {
                 if (erro){
                     reject(erro);
                 }else{
@@ -25,6 +25,10 @@ class PlanetRepository{
                 }
             })
          })
+    }
+
+    findAllPlanets() {
+        return this._planetModel.find({});
     }
 }
 

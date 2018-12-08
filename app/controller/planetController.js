@@ -7,6 +7,7 @@ class PlanetController {
     }
 
     register(req, res){
+        // TO DO validar entradas da api
         const planet =  req.body;
         planet.id = uuidv1();
         
@@ -20,7 +21,11 @@ class PlanetController {
                 .catch(error => console.log("Erro " + error));
     }
 
-    
+    findAll(req, res){
+        this._planetRepository.findAllPlanets()
+            .then(planets => res.status(200).json(planets))
+            .catch(error => console.log(error));
+    }
 }
 
 module.exports = () => PlanetController;
