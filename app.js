@@ -7,11 +7,11 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
 
 consign({cwd:'app'})
-    .include('database')
+    .include('util')
+    .then('database')
     .then('model')
     .then('service')
     .then('repository')
-    //.then('middleware')
     .then('controller')
     .then('beans')
     .then('route')

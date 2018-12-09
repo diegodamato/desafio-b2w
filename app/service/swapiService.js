@@ -8,13 +8,11 @@ class SwapiService{
     }
     
     getMovieAppearances(planet){
-            //Tatooine
-            console.log(`[SERVICE] - Buscando aparições do planeta ${planet.name} em filmes`)
-
-            return axios.get(`${this._host}/api/planets/?search=${planet.name}`)
-                .then(response => _.get(response, 'data.results[0].films.length', 0))
-                .catch(error => console.log(error))
-        
+        console.log(`[SERVICE] - Buscando aparições do planeta ${planet.name} em filmes`)
+        return axios.get(`${this._host}/api/planets/?search=${planet.name}`)
+            .then(response => _.get(response, 'data.results[0].films.length', 0))
+            .catch(error => console.log(error))
+    
     }
 }
 

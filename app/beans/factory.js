@@ -2,12 +2,12 @@ const config = require('./../../config/config')
 
 module.exports = app =>{
     return {
-        get planet(){
-            return app.model.planetModel;
+        get error(){
+            return new app.util.error();
         },
 
         get planetRepository(){
-            return new app.repository.planetRepository(this.planet);
+            return new app.repository.planetRepository();
         },
 
         get swapiService(){
@@ -15,7 +15,7 @@ module.exports = app =>{
         },
 
         get planetController(){
-            return new app.controller.planetController(this.planetRepository, this.swapiService);
+            return new app.controller.planetController(this.planetRepository, this.swapiService, this.error);
         }
     }
 }

@@ -17,14 +17,8 @@ class PlanetRepository{
             planetModel.terrain = planet.terrain;
             planetModel.participations = participations;
 
-            planetModel.save((erro) => {
-                if (erro){
-                    reject(erro);
-                }else{
-                    console.log('[REPOSITORY] Planeta salvo com sucesso no mongodb')
-                    resolve();
-                }
-            })
+            planetModel.save(erro => erro ? reject(erro) : resolve())
+
          })
     }
 
@@ -36,7 +30,6 @@ class PlanetRepository{
         return new Promise((resolve, reject) =>{
             this._planetModel.find({name}, this._excludedFields)
                 .then(planets => resolve(planets.map(planet => Object.assign({}, planet._doc))))
-                .catch(error => reject(error));
         })
     }
 
