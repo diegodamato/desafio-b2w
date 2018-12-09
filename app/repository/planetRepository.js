@@ -43,6 +43,10 @@ class PlanetRepository{
     findIdPlanet(id) {
         return this._planetModel.findOne({id}, this._excludedFields);
     }
+
+    removePlanet(id) {
+        return this._planetModel.deleteOne({id});
+    }
 }
 
 module.exports = () => PlanetRepository;

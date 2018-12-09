@@ -10,7 +10,7 @@ module.exports = app =>{
         .get(controller.findName.bind(controller));
 
     app.route("/v1/planet/:id")
-        .get(controller.findId.bind(controller));
-
+        .get(controller.findId.bind(controller))
+        .delete(controller.remove.bind(controller));
 
 }
