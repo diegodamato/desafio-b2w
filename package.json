@@ -4,7 +4,7 @@
   "description": "Desafio técnico da empresa B2W",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha --timeout 30000 test/**/*.js",
     "start": "node server.js"
   },
   "author": "Diego Oliveira Damato",
@@ -17,5 +17,10 @@
     "lodash": "^4.17.11",
     "mongoose": "^5.3.15",
     "uuid": "^3.3.2"
+  },
+  "devDependencies": {
+    "database-cleaner": "^1.3.0",
+    "mocha": "^5.2.0",
+    "supertest": "^3.3.0"
   }
 }

@@ -11,7 +11,7 @@ module.exports = app =>{
         },
 
         get swapiService(){
-            return new app.service.swapiService(config, this.planetRepository);
+            return new app.service.swapiService(config, this.planetRepository, this.error);
         },
 
         get planetController(){

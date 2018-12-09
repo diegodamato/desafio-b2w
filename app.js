@@ -17,5 +17,4 @@ consign({cwd:'app'})
     .then('route')
     .into(app);
 
-
 module.exports = () => app;

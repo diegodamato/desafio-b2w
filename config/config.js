@@ -1,4 +1,5 @@
 const config = {
+    ENVIRONMENT: process.env.environment || 'dev',
     PORT: process.env.port || 3000,
     MONGO: {
         HOST: process.env.MONGO_HOST || 'localhost',
@@ -11,8 +12,13 @@ const config = {
     },
     SWAPI:{
         HOST: 'https://swapi.co',
+        TIMEOUT: 30000,
     }
 
+}
+
+if (config.ENVIRONMENT === 'test') {
+    config.MONGO.DATABASE = 'planetsTest';
 }
 
 module.exports = config;

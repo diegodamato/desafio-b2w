@@ -67,16 +67,14 @@ class PlanetController {
     remove(req, res) {
         try{
             const { id } = req.params;
+            const message = this._generatorMessage(`Planeta com id ${id} removido com sucesso`);
             console.log(`[CONTROLLER] - Remove planeta de id ${id}`)
             
             this._planetRepository.removePlanet(id)
-                .then(result => {
-                    result.n ? res.status(200).json(this._generatorMessage(`Planeta com id ${id} removido com sucesso`)) : res.status(404).json({})
-                })
+                .then(result => { result.n ? res.status(200).json(message) : res.status(404).json({})})
         }catch(error){
             this._error.catchError(error, res);
         }
-
     }
 
     _generatorMessage(message) {
